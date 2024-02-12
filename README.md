@@ -21,7 +21,7 @@ git clone git@github.com:signalwire/ai-agent-starter-pack.git
 ### Change to the ai-agent-starter-pack directory and install the dependencies
 ```bash
 cd ai-agent-starter-pack
-npm run install
+npm install
 ```
 
 ## Usage

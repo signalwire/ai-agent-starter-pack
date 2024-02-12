@@ -1,0 +1,27 @@
+{
+  "name": "ai-agent-starter-pack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "André Martins",
+  "license": "ISC",
+  "dependencies": {
+    "@signalwire/swaig": "^0.0.0",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "json-schema-to-ts": "^3.0.0",
+    "ngrok": "^5.0.0-beta.2",
+    "node-fetch": "^3.3.2",
+    "open": "^10.0.3",
+    "signalwireml": "^0.0.7",
+    "ws": "^8.16.0"
+  }
+}

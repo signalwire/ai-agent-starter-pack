@@ -1,7 +1,10 @@
 # ai-agent-starter-pack
 
 ## Assumptions
-This project assumes you already have a working Node.js environment.
+This project assumes you already have:
+- A working Node.js environment;
+- A SignalWire account;
+- An Ngrok account.
 
 ## Installation
 
@@ -22,6 +25,10 @@ npm run install
 ```
 
 ## Usage
+
+### Update .env
+Make a copy of the `.env.example` file, name it `.env`, and update the credentials.
+
 ### Run the app
 ```bash
 npm run start

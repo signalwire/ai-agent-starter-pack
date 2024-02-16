@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 async function sipDomainAppExists() {
-    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE']
+    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE'] + '.signalwire.com'
 
     let url = BASE_URL + '/api/relay/rest/domain_applications?filter_name=ai-agent-starter-pack';
 
@@ -36,7 +36,7 @@ async function sipDomainAppExists() {
 }
 
 async function createSipDomainApp() {
-    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE']
+    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE'] + '.signalwire.com'
 
     let url = BASE_URL + '/api/relay/rest/domain_applications';
 
@@ -87,7 +87,7 @@ export async function updateDomainAppHandlerUrl(req, res) {
 
     let agentName = req.body.agentName || "Nataly";
 
-    let url = "https://" + process.env.SIGNALWIRE_SPACE + '/api/relay/rest/domain_applications/' + process.env.DOMAIN_APP_ID;
+    let url = "https://" + process.env.SIGNALWIRE_SPACE + '.signalwire.com/api/relay/rest/domain_applications/' + process.env.DOMAIN_APP_ID;
 
     let headers = {
         "Content-Type": "application/json",

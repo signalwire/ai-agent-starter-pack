@@ -11,7 +11,7 @@ export async function setUpSipEndpoint() {
 }
 
 async function getSipDomainProfile() { 
-    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE']
+    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE'] + '.signalwire.com'
 
     let url = BASE_URL + '/api/relay/rest/sip_profile';
 
@@ -38,7 +38,7 @@ async function getSipDomainProfile() {
 }
 
 async function sipEndpointExists() {
-    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE']
+    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE'] + '.signalwire.com'
 
     let url = BASE_URL + '/api/relay/rest/endpoints/sip?filter_username=ai-agent-tester';
 
@@ -75,7 +75,7 @@ async function sipEndpointExists() {
 }
 
 async function createSipEndpoint() { 
-    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE']
+    const BASE_URL = "https://" + process.env['SIGNALWIRE_SPACE'] + '.signalwire.com'
 
     let url = BASE_URL + '/api/relay/rest/endpoints/sip';
 

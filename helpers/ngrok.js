@@ -4,10 +4,14 @@ dotenv.config();
 
 export async function setUpNgrok() {
 
-    let ngrokUrl = await ngrok.connect({
-        authtoken: process.env?.['NGROK_TOKEN'],
-        port: process.env.PORT
-    });
+    let ngrokUrl = process.env['NGROK_URL']
+
+    if (!ngrokUrl) {
+        let ngrokUrl = await ngrok.connect({
+            authtoken: process.env?.['NGROK_TOKEN'],
+            port: process.env.PORT
+        });
+    }
 
     ngrokUrl = ngrokUrl.replace('https://', '');
 

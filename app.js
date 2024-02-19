@@ -13,6 +13,7 @@ await setUpNgrok();
 
 let app = express();
 app.set("view engine", "ejs");
+app.use("/views", express.static("views"));
 app.use(express.json());
 
 // Load AI Agent routes
@@ -37,10 +38,10 @@ app.get("/", (req, res) => {
 
 app.post("/updateDomainApp", updateDomainAppHandlerUrl)
 
-app.post("/debug", (req, res) => {
+app.post("/debug", async (req, res) => {
     console.log("DEBUG WEBHOOK:", req.body);
 
-    logMessage(req.body);
+    await logMessage(req.body);
 });
 
 const server = app.listen(process.env.PORT, () => {

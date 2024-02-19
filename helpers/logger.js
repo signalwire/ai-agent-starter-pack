@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import WebSocket, { WebSocketServer } from 'ws';
 
-export function logMessage(message) {
+export async function logMessage(message) {
     const ws = new WebSocket('wss://' + process.env?.['PUBLIC_URL']);
 
     ws.on('open', function open() {
@@ -17,8 +17,6 @@ export function setUpWebsocketServer(server) {
         console.log("WebSocket connected");
 
         ws.on("message", (message) => {
-            console.log("Received message:", message);
-
             wss.clients.forEach((client) => {
                 if (client !== ws && client.readyState === WebSocket.OPEN) {
                     client.send(message);

@@ -12,14 +12,14 @@ export default router
 async function getFunctionDeclarations(req, res) {
     let requestedFunctions = req.body.functions;
 
-    logMessage({
+    await logMessage({
         type: "function_declaration_request",
         data: requestedFunctions
     });
 
     let functionDeclarations = [];
 
-    requestedFunctions.forEach((functionName) => {
+    requestedFunctions.forEach(async (functionName) => {
         switch(functionName) {
             case "get_weather":
                 functionDeclarations.push({
@@ -37,7 +37,7 @@ async function getFunctionDeclarations(req, res) {
                     web_hook_url: "https://" + process.env?.['PUBLIC_URL'] + "/functions/get_weather"
                 });
 
-                logMessage({
+                await logMessage({
                     type: "function_declaration_added",
                     data: "get_weather"
                 });
@@ -59,7 +59,7 @@ async function getFunctionDeclarations(req, res) {
                     web_hook_url: "https://" + process.env?.['PUBLIC_URL'] + "/functions/get_something_else"
                 });
 
-                logMessage({
+                await logMessage({
                     type: "function_declaration_added",
                     data: "get_something_else"
                 });
@@ -74,12 +74,22 @@ async function getFunctionDeclarations(req, res) {
 }
 
 // get_weather function implementation
-function getWeather(req, res) {
-    // console.log("GET WEATHER ACCESS:", req.body);
+async function getWeather(req, res) {
+    await logMessage({
+        type: "function_call",
+        data: req.body.argument.parsed
+    })
     
-    res.send({
+    let result = {
         response: "It's super super sunny!"
+    }
+
+    await logMessage({
+        type: "function_call_response",
+        data: result
     });
+
+    res.send(result);
 }
 
 // get_something_else implementation

@@ -24,7 +24,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">SignalWire AI Agents Starter Pack</a>
+            <a class="navbar-brand" href="/" style="font-size: larger;">
+                <img src="views/assets/SignalWireLogo.svg" alt="SignalWire Logo" height="30">
+                AI Agents Starter Pack
+            </a>
         </div>
     </nav>
     <div class="container">
@@ -37,7 +40,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div name="connectForm">
                     <form>
                         <h2>Connecting to the SIP Endpoint...</h2>
@@ -48,7 +51,7 @@
                     <form>
                         <div class="form-group agent-buttons">
                             <% agents.forEach( function(agent) { %>
-                                <button type="button" name="callbtn" class="btn btn-primary"
+                                <button type="button" name="callbtn" class="btn btn-primary" style="font-weight: bold;"
                                     onclick="doCall('<%= agent %>')">Call
                                     <%= agent %>
                                 </button>
@@ -60,18 +63,17 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Status</h5>
+                        <h6 class="card-title" style="font-weight: bold;">Status</h6>
                         <span id="status">Ready to connect.</span>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Logs</h5>
+                        <h6 class="card-title" style="font-weight: bold;">Logs</h6>
                         <div id="logs">
-                            
                         </div>
                     </div>
                 </div>
@@ -108,15 +110,16 @@
             var logs = document.getElementById('logs');
 
             // TODO: This seriously needs to be improved. This is just a quick and dirty way to display logs.
-            switch(log.type) {
-                case 'function_declaration_request':
-                    logs.innerHTML = '<span style="color: white; background-color: red;">' + JSON.stringify(log) + '</span>' + logs.innerHTML;
-                    break;
-                case 'function_declaration_added':
-                    logs.innerHTML = '<span style="color: white; background-color: green;">' + JSON.stringify(log) + '</span>' + logs.innerHTML;
-                    break;
-                default:
-                    logs.innerHTML = '<span>' + JSON.stringify(log.message) + '</span>' + logs.innerHTML;
+            if (log.type === 'function_declaration_request') {
+                addLog('red', log.type, log.data);
+            } else if (log.type === 'function_declaration_added') {
+                addLog('green', log.type, log.data);
+            } else if (log.type === 'function_call') {
+                addLog('blue', log.type, log.data);
+            } else if (log.type === 'function_call_response') {
+                addLog('lightBlue', log.type, log.data);
+            } else {
+                addLog('black', log.type, log.data);
             }
         });
 
@@ -217,6 +220,35 @@
             simple.call('<%= domainAppUrl %>');
         }, 1000);
 
+    }
+
+    function addLog(color, type, data) {
+        var logs = document.getElementById('logs');
+
+        let colorCode = '#FFFFFF';
+
+        if (color === 'red') {
+            colorCode = '#FFADAD';
+        } else if (color === 'green') {
+            colorCode = '#CAFFBF';
+        } else if (color === 'blue') {
+            colorCode = '#A0C4FF';
+        } else if (color === 'lightBlue') {
+            colorCode = '#9BF6FF';
+        }
+
+        let newLog = `
+        <div class="row" style="background-color: ${colorCode}; border-radius: 4px; margin: inherit; padding: 4">
+            <div class="col-md-4">
+                <span>${type}</span>
+            </div>
+            <div class="col-md-8" style="padding: 4">
+                <pre style="margin-bottom: 0px">${JSON.stringify(data, null, 2)}</pre>
+            </div>
+        </div>
+        `
+        
+        logs.innerHTML = newLog + logs.innerHTML;
     }
 
     // hang up any call

@@ -23,7 +23,7 @@ async function sipDomainAppExists() {
             console.log("Domain application does not exist");
             return false;
         } else {
-            console.log(responseData);
+            // console.log(responseData);
             process.env.DOMAIN_APP_ID = responseData.data[0].id;
             process.env.DOMAIN_APP_URL = 'sip:testing@' + responseData.data[0].domain + '.dapp.signalwire.com';
             console.log("Domain application exists");
@@ -62,7 +62,7 @@ async function createSipDomainApp() {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData);
 
         process.env.DOMAIN_APP_ID = responseData.id;
         process.env.DOMAIN_APP_URL = 'sip:testing@' + responseData.domain + '.dapp.signalwire.com';
@@ -76,7 +76,6 @@ async function createSipDomainApp() {
 
 export async function setUpSipDomainApp() {
     if (await sipDomainAppExists()) {
-        console.log("Domain application already exists");
         return;
     } else {
         createSipDomainApp();
@@ -108,7 +107,7 @@ export async function updateDomainAppHandlerUrl(req, res) {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData);
 
     } catch (error) {
         console.error("Error:", error);

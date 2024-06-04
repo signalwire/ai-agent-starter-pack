@@ -15,7 +15,7 @@
     "@signalwire/swaig": "^0.0.0",
     "axios": "^1.6.7",
     "dotenv": "^16.4.1",
-    "ejs": "^3.1.9",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "json-schema-to-ts": "^3.0.0",
     "ngrok": "^5.0.0-beta.2",

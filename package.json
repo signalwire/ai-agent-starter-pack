@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@signalwire/swaig": "^0.0.0",
-    "axios": "^1.6.7",
+    "axios": "^1.7.4",
     "dotenv": "^16.4.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
